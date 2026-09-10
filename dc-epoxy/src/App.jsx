@@ -40,8 +40,8 @@ function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
       setLoading(false);
     });
 
@@ -52,13 +52,17 @@ function ProtectedRoute({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  if (loading) return (
-    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', color: 'white' }}>
-      Loading…
-    </div>
-  );
+  if (loading) {
+    return (
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', color: 'white' }}>
+        Loading...
+      </div>
+    );
+  }
 
-  if (!session) return <Navigate to="/admin" replace />;
+  if (!session) {
+    return <Navigate to="/admin" replace />;
+  }
 
   return children;
 }
@@ -79,18 +83,19 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
 
-        {/* Admin login */}
-        <Route path="/admin" element={<AdminLogin />} />
-
-        {/* Admin protected routes */}
-        <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/settings" element={<AdminSettings />} />
-          <Route path="/admin/services" element={<AdminServices />} />
-          <Route path="/admin/projects" element={<AdminProjects />} />
-          <Route path="/admin/testimonials" element={<AdminTestimonials />} />
-          <Route path="/admin/process-steps" element={<AdminProcessSteps />} />
-          <Route path="/admin/enquiries" element={<AdminEnquiries />} />
+        {/* Admin Section */}
+        <Route path="/admin">
+          <Route index element={<AdminLogin />} />
+          
+          <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="settings" element={<AdminSettings />} />
+            <Route path="services" element={<AdminServices />} />
+            <Route path="projects" element={<AdminProjects />} />
+            <Route path="testimonials" element={<AdminTestimonials />} />
+            <Route path="process-steps" element={<AdminProcessSteps />} />
+            <Route path="enquiries" element={<AdminEnquiries />} />
+          </Route>
         </Route>
 
         {/* 404 Page */}

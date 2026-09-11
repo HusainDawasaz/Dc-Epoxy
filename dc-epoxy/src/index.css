@@ -58,7 +58,7 @@ button {
 }
 
 .site-header--dark {
-  color: var(--ink);
+  color: white;
 }
 
 .site-header--scrolled {
@@ -143,7 +143,12 @@ body.header-fixed {
 }
 
 .site-header--dark .main-nav > a:not(.button) {
-  opacity: 0.72;
+  opacity: 0.85;
+  color: white;
+}
+
+.site-header--dark .nav-shell {
+  border-color: rgba(255,255,255,0.2);
 }
 
 .menu-toggle {

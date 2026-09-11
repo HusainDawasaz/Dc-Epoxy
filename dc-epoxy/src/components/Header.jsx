@@ -13,7 +13,10 @@ export default function Header({ dark = false }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isDark = dark || scrolled;
+  // dark=true means page has dark hero, keep white text
+  // scrolled=true means header is now fixed over light content, switch to dark text
+  const isDark = dark && !scrolled;
+  const isScrolled = scrolled;
 
   const navLinks = [
     ['/services', 'Services'],
@@ -24,7 +27,7 @@ export default function Header({ dark = false }) {
   ];
 
   return (
-    <header className={`site-header${isDark ? ' site-header--dark' : ''}${scrolled ? ' site-header--scrolled' : ''}`}>
+    <header className={`site-header${isDark ? ' site-header--dark' : ''}${isScrolled ? ' site-header--scrolled' : ''}`}>
       <div className="nav-shell">
         <Link to="/" className="brand-lockup" aria-label="DC-EPOXY home" onClick={() => setMenuOpen(false)}>
           <span className="brand-mark">DC</span>

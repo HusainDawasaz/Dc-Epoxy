@@ -268,7 +268,7 @@ export default function Home() {
 
       {/* 13. CTA Band */}
       <section className="cta-band animate-on-scroll" style={{ backgroundColor: '#171716', color: 'white', padding: '8rem 2rem', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Ready to <em>transform</em> your floor?</h2>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Ready to <em style={{ color: '#c58361', fontStyle: 'italic' }}>transform</em> your floor?</h2>
         <p style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 3rem auto', color: '#ccc' }}>Get a free site survey and quote. No obligation. We cover all of Dubai, Abu Dhabi and the wider UAE.</p>
         <Link to="/contact" className="button button--copper" style={{ fontSize: '1.2rem', padding: '1rem 2.5rem' }}>Book a free quote</Link>
       </section>

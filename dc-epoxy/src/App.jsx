@@ -19,6 +19,7 @@ import AdminLogin from './admin/AdminLogin';
 import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminSettings from './admin/AdminSettings';
+import AdminAppearance from './admin/AdminAppearance';
 import AdminServices from './admin/AdminServices';
 import AdminProjects from './admin/AdminProjects';
 import AdminTestimonials from './admin/AdminTestimonials';
@@ -40,8 +41,8 @@ function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
       setLoading(false);
     });
 
@@ -52,17 +53,13 @@ function ProtectedRoute({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  if (loading) {
-    return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', color: 'white' }}>
-        Loading...
-      </div>
-    );
-  }
+  if (loading) return (
+    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', color: 'white' }}>
+      Loading…
+    </div>
+  );
 
-  if (!session) {
-    return <Navigate to="/admin" replace />;
-  }
+  if (!session) return <Navigate to="/admin" replace />;
 
   return children;
 }
@@ -83,22 +80,28 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
 
-        {/* Admin Section */}
-        <Route path="/admin">
-          <Route index element={<AdminLogin />} />
-          
-          <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-            <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="settings" element={<AdminSettings />} />
-            <Route path="services" element={<AdminServices />} />
-            <Route path="projects" element={<AdminProjects />} />
-            <Route path="testimonials" element={<AdminTestimonials />} />
-            <Route path="process-steps" element={<AdminProcessSteps />} />
-            <Route path="enquiries" element={<AdminEnquiries />} />
-          </Route>
+        {/* Admin login (public) */}
+        <Route path="/admin" element={<AdminLogin />} />
+
+        {/* Admin protected routes — AdminLayout uses <Outlet /> */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="settings" element={<AdminSettings />} />
+          <Route path="appearance" element={<AdminAppearance />} />
+          <Route path="services" element={<AdminServices />} />
+          <Route path="projects" element={<AdminProjects />} />
+          <Route path="testimonials" element={<AdminTestimonials />} />
+          <Route path="process-steps" element={<AdminProcessSteps />} />
+          <Route path="enquiries" element={<AdminEnquiries />} />
         </Route>
 
-        {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

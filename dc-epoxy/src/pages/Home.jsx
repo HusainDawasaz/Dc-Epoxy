@@ -55,7 +55,7 @@ export default function Home() {
         style={{ backgroundImage: `url(${settings?.hero_image_url || '/images/dc-epoxy-hero.jpg'})` }}
       >
         <div className="hero-overlay" style={{ background: 'linear-gradient(90deg, rgba(17,17,17,.84) 0%, rgba(17,17,17,.46) 52%, rgba(17,17,17,.08) 100%)', position: 'absolute', inset: 0 }}></div>
-        <div className="hero-content" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="hero-content" style={{ position: 'relative', zIndex: 1, textAlign: settings?.hero_alignment === 'center' ? 'center' : 'left', alignItems: settings?.hero_alignment === 'center' ? 'center' : 'flex-start' }}>
           <div className="eyebrow">Epoxy flooring · UAE</div>
           <h1>
             {settings?.hero_heading || 'Transform Your Floor. Elevate Your Space.'}

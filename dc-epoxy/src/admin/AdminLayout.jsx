@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { LayoutDashboard, Settings, Database, Image, Star, List, Mail, LogOut } from 'lucide-react';
+import { LayoutDashboard, Settings, Database, Image, Star, List, Mail, LogOut, Paintbrush } from 'lucide-react';
 
 export default function AdminLayout() {
   const navigate = useNavigate();
@@ -46,6 +46,9 @@ export default function AdminLayout() {
           </NavLink>
           <NavLink to="/admin/settings" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
             <Settings size={18} /> Settings
+          </NavLink>
+          <NavLink to="/admin/appearance" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
+            <Paintbrush size={18} /> Appearance
           </NavLink>
           <NavLink to="/admin/services" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
             <Database size={18} /> Services

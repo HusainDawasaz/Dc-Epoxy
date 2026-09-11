@@ -2,24 +2,37 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Instagram } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
 
 export default function Layout({ children, email, instagram, darkHeader = false }) {
+  const { settings } = useContent();
+
+  const customStyles = `
+    :root {
+      --copper: ${settings?.primary_color || '#b87333'};
+      --paper: ${settings?.bg_color || '#f7f5f1'};
+      --ink: ${settings?.text_color || '#171716'};
+    }
+  `;
+
   return (
-    <div className="app-layout min-h-screen flex flex-col relative">
+    <div className="app-layout" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      <style>{customStyles}</style>
       <Header dark={darkHeader} />
-      <main className="flex-grow">
+      
+      <main style={{ flexGrow: 1 }}>
         {children}
       </main>
-      <Footer email={email} instagram={instagram} />
+      
+      <Footer email={email || settings?.contact_email} instagram={instagram || settings?.instagram_url} />
       
       <a 
-        href={instagram || 'https://www.instagram.com/dc_epoxy_/'} 
+        href={instagram || settings?.instagram_url || 'https://www.instagram.com/dc_epoxy_/'} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="fixed md:hidden bottom-4 right-4 bg-copper-500 text-white p-3 rounded-full shadow-lg flex items-center gap-2 z-50"
+        className="floating-cta"
       >
         <Instagram size={20} />
-        <span className="text-sm font-medium sr-only">Talk to an expert</span>
       </a>
     </div>
   );

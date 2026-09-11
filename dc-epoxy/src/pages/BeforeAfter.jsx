@@ -1,11 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import CommonNinjaWidget from '../components/CommonNinjaWidget';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function BeforeAfter() {
+  useScrollAnimation();
   return (
     <Layout darkHeader={true}>
-      <section className="section bg-paper">
+      <section className="section bg-paper animate-on-scroll">
         <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 2rem' }}>
           
           <div className="text-center" style={{ marginBottom: '4rem' }}>

@@ -65,10 +65,6 @@ function ProtectedRoute({ children }) {
 }
 
 function App() {
-  useEffect(() => {
-      });
-    }
-  }, []);
 
   return (
     <Router>

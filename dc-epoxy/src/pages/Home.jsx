@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, ChevronDown } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import Layout from '../components/Layout';
 import CommonNinjaWidget from '../components/CommonNinjaWidget';
 import SectionIntro from '../components/SectionIntro';
 
 export default function Home() {
   const { settings, services, projects, testimonials, processSteps } = useContent();
+  useScrollAnimation();
 
 
   const displayServices = services && services.length > 0 ? services : [
@@ -137,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* 6. Projects Mosaic Section */}
-      <section className="section">
+      <section className="section animate-on-scroll">
         <SectionIntro kicker="Recent Work" title="Projects that speak for themselves" />
         <div className="project-mosaic" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '3rem' }}>
           {displayProjects.map((project, index) => (
@@ -214,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* 10. Story Band */}
-      <section className="story-band" style={{ backgroundColor: '#c58361', color: 'white', padding: '6rem 2rem' }}>
+      <section className="story-band animate-on-scroll" style={{ backgroundColor: '#c58361', color: 'white', padding: '6rem 2rem' }}>
         <div className="story-layout" style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', gap: '4rem', alignItems: 'center' }}>
           <div className="story-stamp" style={{ textAlign: 'center', border: '2px solid white', padding: '2rem', borderRadius: '50%', width: '150px', height: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>DC</div>
@@ -222,7 +224,7 @@ export default function Home() {
             <div style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>Est. 2021</div>
           </div>
           <div className="text-column" style={{ flex: 1 }}>
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>The craftsmanship <em>behind</em> the floor</h2>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>The craftsmanship <em style={{ color: "white", opacity: 0.8, fontStyle: "italic" }}>behind</em> the floor</h2>
             <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '1rem' }}>At DC-EPOXY, we don't just pour resin; we engineer floors that last. Our commitment to premium materials and exact application ensures your space isn't just transformed visually, but structurally enhanced.</p>
             <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '2rem' }}>Quality without compromise, from the first layer to the final topcoat.</p>
             <Link to="/about" className="button button--outline" style={{ borderColor: 'white', color: 'white' }}>Learn about us</Link>
@@ -254,7 +256,7 @@ export default function Home() {
           {displayTestimonials.map((testimonial, idx) => (
             <div key={testimonial.id || idx} className="testimonial-card" style={{ backgroundColor: 'white', padding: '2rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
               <div className="eyebrow" style={{ color: '#c58361', fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '1px' }}>Verified client</div>
-              <p style={{ fontSize: '1.1rem', fontStyle: 'italic', marginBottom: '2rem' }}>"{testimonial.content}"</p>
+              <p style={{ fontSize: '1.1rem', fontStyle: 'italic', marginBottom: '2rem' }}>"{testimonial.quote}"</p>
               <div>
                 <strong style={{ display: 'block' }}>{testimonial.author_name}</strong>
                 <span style={{ color: '#666', fontSize: '0.9rem' }}>{testimonial.location}</span>
@@ -265,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* 13. CTA Band */}
-      <section className="cta-band" style={{ backgroundColor: '#171716', color: 'white', padding: '8rem 2rem', textAlign: 'center' }}>
+      <section className="cta-band animate-on-scroll" style={{ backgroundColor: '#171716', color: 'white', padding: '8rem 2rem', textAlign: 'center' }}>
         <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Ready to <em>transform</em> your floor?</h2>
         <p style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 3rem auto', color: '#ccc' }}>Get a free site survey and quote. No obligation. We cover all of Dubai, Abu Dhabi and the wider UAE.</p>
         <Link to="/contact" className="button button--copper" style={{ fontSize: '1.2rem', padding: '1rem 2.5rem' }}>Book a free quote</Link>

@@ -9,13 +9,7 @@ export default function Home() {
   const { settings, services, projects, testimonials, processSteps } = useContent();
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
-    script.async = true;
-    document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
     };
   }, []);
 
@@ -146,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* 6. Projects Mosaic Section */}
-      <section className="section">
+      <section className="section" data-aos="fade-up">
         <SectionIntro kicker="Recent Work" title="Projects that speak for themselves" />
         <div className="project-mosaic" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '3rem' }}>
           {displayProjects.map((project, index) => (

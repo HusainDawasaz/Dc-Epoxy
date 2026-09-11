@@ -65,6 +65,17 @@ function ProtectedRoute({ children }) {
 }
 
 function App() {
+  // Initialize Animate On Scroll (AOS)
+  useEffect(() => {
+    if (window.AOS) {
+      window.AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-out'
+      });
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

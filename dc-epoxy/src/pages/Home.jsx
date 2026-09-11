@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, ChevronDown } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import Layout from '../components/Layout';
+import CommonNinjaWidget from '../components/CommonNinjaWidget';
 import SectionIntro from '../components/SectionIntro';
 
 export default function Home() {
   const { settings, services, projects, testimonials, processSteps } = useContent();
+
 
   const displayServices = services && services.length > 0 ? services : [
     { id: 1, title: 'Garage Epoxy', description: 'Durable, stain-resistant coatings for residential garages.', image_url: '/images/services/garage.jpg' },
@@ -135,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* 6. Projects Mosaic Section */}
-      <section className="section" data-aos="fade-up">
+      <section className="section">
         <SectionIntro kicker="Recent Work" title="Projects that speak for themselves" />
         <div className="project-mosaic" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '3rem' }}>
           {displayProjects.map((project, index) => (

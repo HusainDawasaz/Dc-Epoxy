@@ -8,11 +8,6 @@ import SectionIntro from '../components/SectionIntro';
 export default function Home() {
   const { settings, services, projects, testimonials, processSteps } = useContent();
 
-  useEffect(() => {
-
-    };
-  }, []);
-
   const displayServices = services && services.length > 0 ? services : [
     { id: 1, title: 'Garage Epoxy', description: 'Durable, stain-resistant coatings for residential garages.', image_url: '/images/services/garage.jpg' },
     { id: 2, title: 'Metallic Epoxy', description: 'High-end, striking floors with a reflective metallic finish.', image_url: '/images/services/metallic.jpg' },

@@ -4,7 +4,7 @@ import Footer from './Footer';
 import { Instagram } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 
-export default function Layout({ children, email, instagram, darkHeader = false }) {
+export default function Layout({ children, email, instagram }) {
   const { settings } = useContent();
 
   const customStyles = `
@@ -18,7 +18,7 @@ export default function Layout({ children, email, instagram, darkHeader = false 
   return (
     <div className="app-layout" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <style>{customStyles}</style>
-      <Header dark={darkHeader} />
+      <Header />
       
       <main style={{ flexGrow: 1 }}>
         {children}

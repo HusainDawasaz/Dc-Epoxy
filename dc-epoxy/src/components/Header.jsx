@@ -18,7 +18,6 @@ export default function Header({ dark = false }) {
   const navLinks = [
     ['/services', 'Services'],
     ['/projects', 'Projects'],
-    ['/before-after', 'Before / After'],
     ['/process', 'Our Process'],
     ['/about', 'About Us'],
     ['/contact', 'Contact'],

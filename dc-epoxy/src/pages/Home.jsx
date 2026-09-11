@@ -110,15 +110,17 @@ export default function Home() {
       </section>
 
       {/* 4. Before/After Section */}
-      <section className="before-after-section" style={{ backgroundColor: '#171716', color: '#f7f5f1', padding: '6rem 2rem' }}>
-        <SectionIntro 
-          className="section-intro--dark"
-          kicker="Results" 
-          title="See the transformation" 
-          body="Real projects, real results. Our before and after gallery shows the DC-EPOXY difference." 
-        />
-        <div className="before-after-host" style={{ marginTop: '3rem' }}>
-          <div className="commonninja_component" pid="pid-101850d9-1bce-4025-9860-de67f43456b1"></div>
+      <section className="before-after-section animate-on-scroll" style={{ backgroundColor: '#171716', color: '#f7f5f1', padding: '6rem 2rem' }}>
+        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          <SectionIntro 
+            className="section-intro--dark"
+            kicker="Results" 
+            title="See the transformation" 
+            body="Real projects, real results. Our before and after gallery shows the DC-EPOXY difference." 
+          />
+          <div style={{ marginTop: '3rem', minHeight: '500px' }}>
+            <CommonNinjaWidget pid="101850d9-1bce-4025-9860-de67f43456b1" />
+          </div>
         </div>
       </section>
 
@@ -218,10 +220,8 @@ export default function Home() {
       {/* 10. Story Band */}
       <section className="story-band animate-on-scroll" style={{ backgroundColor: '#c58361', color: 'white', padding: '6rem 2rem' }}>
         <div className="story-layout" style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', gap: '4rem', alignItems: 'center' }}>
-          <div className="story-stamp" style={{ textAlign: 'center', border: '2px solid white', padding: '2rem', borderRadius: '50%', width: '150px', height: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>DC</div>
-            <div>EPOXY</div>
-            <div style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>Est. 2021</div>
+          <div className="story-stamp" style={{ flexShrink: 0, width: '180px', height: '180px', borderRadius: '50%', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.6)', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src="/images/dc-epoxy-logo.jpg" alt="DC-EPOXY Logo" style={{ width: '140px', height: '140px', objectFit: 'contain' }} />
           </div>
           <div className="text-column" style={{ flex: 1 }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>The craftsmanship <em style={{ color: "white", opacity: 0.8, fontStyle: "italic" }}>behind</em> the floor</h2>

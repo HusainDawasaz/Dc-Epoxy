@@ -6,14 +6,15 @@
 DC-EPOXY (Dubai Coatings) specializes in high-quality residential, commercial, and industrial epoxy flooring solutions across the United Arab Emirates.
 
 ## Services
-- Garage Epoxy
-- Metallic Epoxy
-- Flake Flooring
-- Commercial Coating
-- Industrial Flooring
-- Healthcare Flooring
+- [Garage Epoxy](https://dc-epoxy.com/services)
+- [Metallic Epoxy](https://dc-epoxy.com/services)
+- [Flake Flooring](https://dc-epoxy.com/services)
+- [Commercial Coating](https://dc-epoxy.com/services)
+- [Industrial Flooring](https://dc-epoxy.com/services)
+- [Healthcare Flooring](https://dc-epoxy.com/services)
 
 ## Contact
-Email: info@dc-epoxy.com
-Website: https://dc-epoxy.com
+Email: [info@dc-epoxy.com](mailto:info@dc-epoxy.com)
+Website: [https://dc-epoxy.com](https://dc-epoxy.com)
+Contact Page: [Book a Quote](https://dc-epoxy.com/contact)
 Location: Dubai, UAE

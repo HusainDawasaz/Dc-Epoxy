@@ -1287,3 +1287,32 @@ h1 em, h2 em {
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
+
+/* Responsive Flex Layouts */
+.flex-layout {
+  display: flex;
+  gap: 4rem;
+}
+.align-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1;
+}
+@media (max-width: 900px) {
+  .flex-layout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .story-stamp {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 600px) {
+  .credibility-items {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+}

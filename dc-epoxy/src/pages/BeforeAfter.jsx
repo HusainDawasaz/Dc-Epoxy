@@ -14,7 +14,7 @@ export default function BeforeAfter() {
             <span className="eyebrow">TRANSFORMATIONS</span>
             <h1 className="h1" style={{ marginBottom: '1.5rem' }}>Before & After</h1>
             <p className="lead text-muted" style={{ maxWidth: '600px', margin: '0 auto' }}>
-              Slide to see the dramatic difference a premium epoxy floor can make to your space.
+              Slide to see the dramatic difference our Dubai Coatings team can make to your residential or commercial space with premium epoxy.
             </p>
           </div>
 

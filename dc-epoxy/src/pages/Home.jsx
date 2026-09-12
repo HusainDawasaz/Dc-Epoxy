@@ -116,7 +116,7 @@ export default function Home() {
             className="section-intro--dark"
             kicker="Results" 
             title="See the transformation" 
-            body="Real projects, real results. Our before and after gallery shows the DC-EPOXY difference." 
+            body="Real projects, real results. Our before and after gallery showcases why we are the top choice for epoxy coatings in the UAE." 
           />
           <div style={{ marginTop: '3rem', minHeight: '500px' }}>
             <CommonNinjaWidget pid="101850d9-1bce-4025-9860-de67f43456b1" />
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
 
       {/* 5. Why Section */}
-      <section className="section why-section" style={{ display: 'flex', padding: '6rem 2rem', gap: '4rem' }}>
+      <section className="section why-section" className="flex-layout" style={{ padding: '6rem 2rem' }}>
         <div style={{ flex: 1 }}>
           <SectionIntro kicker="Why DC-EPOXY" title="Built on precision. Delivered with care." />
         </div>
@@ -219,13 +219,13 @@ export default function Home() {
 
       {/* 10. Story Band */}
       <section className="story-band animate-on-scroll" style={{ backgroundColor: '#c58361', color: 'white', padding: '6rem 2rem' }}>
-        <div className="story-layout" style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', gap: '4rem', alignItems: 'center' }}>
+        <div className="story-layout flex-layout align-center" style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <div className="story-stamp" style={{ flexShrink: 0, width: '180px', height: '180px', borderRadius: '50%', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.6)', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src="/images/dc-epoxy-logo.jpg" alt="DC-EPOXY Logo" style={{ width: '140px', height: '140px', objectFit: 'contain' }} />
           </div>
           <div className="text-column" style={{ flex: 1 }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>The craftsmanship <em style={{ color: "white", opacity: 0.8, fontStyle: "italic" }}>behind</em> the floor</h2>
-            <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '1rem' }}>At DC-EPOXY, we don't just pour resin; we engineer floors that last. Our commitment to premium materials and exact application ensures your space isn't just transformed visually, but structurally enhanced.</p>
+            <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '1rem' }}>At DC-EPOXY (Dubai Coatings), we are the premier experts in UAE epoxy flooring. We don't just pour resin; we engineer floors that last. Our commitment to premium materials and exact application ensures your space isn't just transformed visually, but structurally enhanced.</p>
             <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '2rem' }}>Quality without compromise, from the first layer to the final topcoat.</p>
             <Link to="/about" className="button button--outline" style={{ borderColor: 'white', color: 'white' }}>Learn about us</Link>
           </div>
@@ -234,7 +234,7 @@ export default function Home() {
 
       {/* 11. Areas Section */}
       <section className="section areas-section">
-        <div className="areas-layout" style={{ display: 'flex', gap: '4rem' }}>
+        <div className="areas-layout flex-layout">
           <div style={{ flex: 1 }}>
             <SectionIntro kicker="Service Areas" title="We come to you" />
           </div>

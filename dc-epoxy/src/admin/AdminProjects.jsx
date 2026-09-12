@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Plus, Edit, Trash2, X, Save } from 'lucide-react';
+import ImageUpload from './components/ImageUpload';
 
 export default function AdminProjects() {
   const [projects, setProjects] = useState([]);
@@ -114,7 +115,10 @@ export default function AdminProjects() {
               <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" style={inputStyle} />
             </div>
             <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" rows={3} style={inputStyle} />
-            <input type="text" name="image_url" value={formData.image_url} onChange={handleChange} placeholder="Image URL" style={inputStyle} />
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '13px' }}>Project Image</label>
+              <ImageUpload url={formData.image_url} onUpload={(url) => setFormData({ ...formData, image_url: url })} />
+            </div>
             
             <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

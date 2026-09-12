@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Save } from 'lucide-react';
+import ImageUpload from './components/ImageUpload';
 
 export default function AdminAppearance() {
   const [settings, setSettings] = useState({
     primary_color: '#b87333',
     bg_color: '#f7f5f1',
     text_color: '#171716',
-    hero_alignment: 'left'
+    hero_alignment: 'left',
+    hero_image_url: '/images/dc-epoxy-hero.jpg'
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -26,7 +28,8 @@ export default function AdminAppearance() {
           primary_color: data.primary_color || '#b87333',
           bg_color: data.bg_color || '#f7f5f1',
           text_color: data.text_color || '#171716',
-          hero_alignment: data.hero_alignment || 'left'
+          hero_alignment: data.hero_alignment || 'left',
+          hero_image_url: data.hero_image_url || '/images/dc-epoxy-hero.jpg'
         });
       }
     } catch (error) {
@@ -137,6 +140,11 @@ export default function AdminAppearance() {
         <hr style={{ margin: '3rem 0', border: 'none', borderTop: '1px solid #eee' }} />
 
         <h2 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#333', fontSize: '1.25rem' }}>Layout Settings</h2>
+
+        <div className="form-group" style={{ maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2rem' }}>
+          <label style={{ fontWeight: '600', color: '#374151' }}>Hero Image</label>
+          <ImageUpload url={settings.hero_image_url} onUpload={(url) => setSettings({ ...settings, hero_image_url: url })} />
+        </div>
         
         <div className="form-group" style={{ maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <label style={{ fontWeight: '600', color: '#374151' }}>Hero Text Alignment</label>

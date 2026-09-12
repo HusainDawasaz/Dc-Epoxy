@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Plus, Edit, Trash2, X, Save } from 'lucide-react';
+import ImageUpload from './components/ImageUpload';
 
 export default function AdminServices() {
   const [services, setServices] = useState([]);
@@ -102,7 +103,10 @@ export default function AdminServices() {
           <div style={{ display: 'grid', gap: '1rem' }}>
             <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Service Title" required style={inputStyle} />
             <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" rows={3} required style={inputStyle} />
-            <input type="text" name="image_url" value={formData.image_url} onChange={handleChange} placeholder="Image URL" style={inputStyle} />
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '13px' }}>Service Image</label>
+              <ImageUpload url={formData.image_url} onUpload={(url) => setFormData({ ...formData, image_url: url })} />
+            </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <label>Sort Order:</label>
               <input type="number" name="sort_order" value={formData.sort_order} onChange={handleChange} style={{...inputStyle, width: '100px'}} />

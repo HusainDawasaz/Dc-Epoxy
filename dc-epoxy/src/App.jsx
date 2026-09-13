@@ -13,7 +13,6 @@ import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import NotFound from './pages/NotFound';
-import TidioChat from './components/TidioChat';
 
 // Admin
 import AdminLogin from './admin/AdminLogin';
@@ -70,7 +69,6 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <TidioChat />
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home />} />

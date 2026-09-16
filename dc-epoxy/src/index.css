@@ -1316,3 +1316,16 @@ h1 em, h2 em {
     text-align: center;
   }
 }
+
+/* Custom Header Breakpoints */
+.mobile-toggle {
+  display: none !important;
+}
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+}

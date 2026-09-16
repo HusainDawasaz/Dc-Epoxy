@@ -73,7 +73,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{
+        <nav className="desktop-nav" style={{
           display: 'flex',
           alignItems: 'center',
           gap: '30px',
@@ -108,14 +108,13 @@ export default function Header() {
 
         {/* Mobile Toggle */}
         <button
+          className="mobile-toggle"
           style={{
-            display: 'none',
             background: 'none',
             border: 'none',
             color: 'inherit',
             cursor: 'pointer',
           }}
-          className="menu-toggle"
           type="button"
           onClick={() => setMenuOpen(o => !o)}
           aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}

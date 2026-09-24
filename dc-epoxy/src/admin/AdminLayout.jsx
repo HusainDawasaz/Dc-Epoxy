@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { LayoutDashboard, Settings, Database, Image, Star, List, Mail, LogOut, Paintbrush } from 'lucide-react';
+import { LayoutDashboard, Settings, Image, Star, List, Mail, LogOut, Paintbrush, Database, Menu, X } from 'lucide-react';
+
+const navItems = [
+  { to: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/admin/settings', icon: Settings, label: 'Settings' },
+  { to: '/admin/appearance', icon: Paintbrush, label: 'Appearance' },
+  { to: '/admin/services', icon: Database, label: 'Services' },
+  { to: '/admin/projects', icon: Image, label: 'Projects' },
+  { to: '/admin/testimonials', icon: Star, label: 'Testimonials' },
+  { to: '/admin/process-steps', icon: List, label: 'Process Steps' },
+  { to: '/admin/enquiries', icon: Mail, label: 'Enquiries' },
+];
 
 export default function AdminLayout() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate('/admin');
-      }
+      if (!session) navigate('/admin');
       setLoading(false);
     };
     checkSession();
-    
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        navigate('/admin');
-      }
+      if (!session) navigate('/admin');
     });
 
     return () => subscription.unsubscribe();
@@ -31,60 +44,122 @@ export default function AdminLayout() {
     navigate('/');
   };
 
-  if (loading) return <div className="loading-screen" style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Loading...</div>;
+  if (loading) return (
+    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', color: 'white' }}>
+      Loading...
+    </div>
+  );
 
   return (
-    <div className="admin-shell" style={{ display: 'grid', gridTemplateColumns: '230px 1fr', minHeight: '100vh' }}>
-      <aside className="admin-sidebar" style={{ backgroundColor: '#1a1a1a', color: 'white', padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-        <div className="brand-lockup" style={{ marginBottom: '2rem' }}>
-          <h2 style={{ color: '#f97316', margin: 0 }}>DC EPOXY</h2>
-          <p style={{ margin: 0, fontSize: '0.875rem', color: '#888' }}>Admin Panel</p>
+    <div style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+
+      {/* Mobile Top Bar */}
+      <div className="admin-topbar">
+        <button
+          onClick={() => setSidebarOpen(o => !o)}
+          style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center' }}
+          aria-label="Toggle menu"
+        >
+          {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+        <span style={{ color: '#f97316', fontWeight: 800, fontSize: '1rem' }}>DC-EPOXY Admin</span>
+        <div style={{ width: 38 }} />
+      </div>
+
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 199 }}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={'admin-sidebar' + (sidebarOpen ? ' admin-sidebar--open' : '')}>
+        <div style={{ padding: '1.5rem', borderBottom: '1px solid #2a2a2a' }}>
+          <h2 style={{ color: '#f97316', margin: 0, fontSize: '1.1rem' }}>DC EPOXY</h2>
+          <p style={{ margin: 0, fontSize: '0.8rem', color: '#888' }}>Admin Panel</p>
         </div>
-        <nav className="admin-nav" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-          <NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <LayoutDashboard size={18} /> Dashboard
-          </NavLink>
-          <NavLink to="/admin/settings" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <Settings size={18} /> Settings
-          </NavLink>
-          <NavLink to="/admin/appearance" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <Paintbrush size={18} /> Appearance
-          </NavLink>
-          <NavLink to="/admin/services" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <Database size={18} /> Services
-          </NavLink>
-          <NavLink to="/admin/projects" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <Image size={18} /> Projects
-          </NavLink>
-          <NavLink to="/admin/testimonials" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <Star size={18} /> Testimonials
-          </NavLink>
-          <NavLink to="/admin/process-steps" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <List size={18} /> Process Steps
-          </NavLink>
-          <NavLink to="/admin/enquiries" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} style={navLinkStyle}>
-            <Mail size={18} /> Enquiries
-          </NavLink>
+
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', padding: '1rem', flex: 1 }}>
+          {navItems.map(({ to, icon: Icon, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              style={({ isActive }) => ({
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.75rem 1rem',
+                borderRadius: '6px',
+                color: isActive ? 'white' : '#bbb',
+                backgroundColor: isActive ? '#f97316' : 'transparent',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                fontWeight: isActive ? 700 : 400,
+                transition: 'background-color 0.2s, color 0.2s',
+              })}
+            >
+              <Icon size={18} />
+              {label}
+            </NavLink>
+          ))}
         </nav>
-        <button className="logout-btn" onClick={handleLogout} style={{ ...navLinkStyle, marginTop: 'auto', background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', color: '#ff4d4f' }}>
+
+        <button
+          onClick={handleLogout}
+          style={{
+            display: 'flex', alignItems: 'center', gap: '0.75rem',
+            padding: '1rem 1.5rem', background: 'none', border: 'none',
+            color: '#ff6b6b', cursor: 'pointer', fontSize: '0.9rem',
+            width: '100%', borderTop: '1px solid #2a2a2a',
+          }}
+        >
           <LogOut size={18} /> Logout
         </button>
       </aside>
-      <main className="admin-main" style={{ padding: '2rem', backgroundColor: '#f5f5f5', overflowY: 'auto' }}>
+
+      {/* Main content */}
+      <main className="admin-main">
         <Outlet />
       </main>
+
+      <style>{`
+        .admin-topbar {
+          display: none;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          background: #1a1a1a;
+          padding: 0.75rem 1rem;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .admin-sidebar {
+          position: fixed;
+          top: 0; left: 0; bottom: 0;
+          width: 230px;
+          background: #1a1a1a;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          z-index: 200;
+          overflow-y: auto;
+          transition: transform 0.3s ease;
+        }
+        .admin-main {
+          margin-left: 230px;
+          padding: 2rem;
+          min-height: 100vh;
+          background: #f5f5f5;
+        }
+        @media (max-width: 768px) {
+          .admin-topbar { display: flex; }
+          .admin-sidebar { transform: translateX(-100%); }
+          .admin-sidebar--open { transform: translateX(0); }
+          .admin-main { margin-left: 0; padding: 1.25rem; }
+        }
+      `}</style>
     </div>
   );
 }
-
-const navLinkStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.75rem',
-  padding: '0.75rem 1rem',
-  color: '#ddd',
-  textDecoration: 'none',
-  borderRadius: '4px',
-  transition: 'background-color 0.2s',
-  fontSize: '0.95rem'
-};

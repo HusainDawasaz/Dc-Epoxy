@@ -23,7 +23,7 @@ export default function Services() {
             <h1>Epoxy Flooring Systems</h1>
             <p>We offer a range of premium resin and epoxy systems tailored for different environments, from residential garages to heavy-duty industrial warehouses.</p>
           </div>
-
+        </section>
 
         <section className="service-directory" style={{ padding: '6rem 2rem', backgroundColor: '#f7f5f1' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '4rem' }}>

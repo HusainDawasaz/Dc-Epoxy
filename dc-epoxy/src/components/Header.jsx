@@ -1,8 +1,11 @@
+"use client";
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -46,7 +49,7 @@ export default function Header() {
       }}>
         {/* Logo */}
         <Link
-          to="/"
+          href="/"
           onClick={() => setMenuOpen(false)}
           style={{
             display: 'inline-flex',
@@ -83,9 +86,9 @@ export default function Header() {
           letterSpacing: '0.09em',
         }}>
           {navLinks.map(([href, label]) => (
-            <NavLink
+            <Link
               key={href}
-              to={href}
+              href={href}
               onClick={() => setMenuOpen(false)}
               style={({ isActive }) => ({
                 color: 'inherit',
@@ -95,10 +98,10 @@ export default function Header() {
               })}
             >
               {label}
-            </NavLink>
+            </Link>
           ))}
           <Link
-            to="/contact"
+            href="/contact"
             className="button button--copper"
             onClick={() => setMenuOpen(false)}
           >
@@ -139,17 +142,17 @@ export default function Header() {
           letterSpacing: '0.09em',
         }}>
           {navLinks.map(([href, label]) => (
-            <NavLink
+            <Link
               key={href}
-              to={href}
+              href={href}
               onClick={() => setMenuOpen(false)}
               style={{ color: 'white', textDecoration: 'none', opacity: 0.85 }}
             >
               {label}
-            </NavLink>
+            </Link>
           ))}
           <Link
-            to="/contact"
+            href="/contact"
             className="button button--copper"
             onClick={() => setMenuOpen(false)}
             style={{ marginTop: '0.5rem', width: 'fit-content' }}

@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Instagram, Mail } from 'lucide-react';
 
 export default function Footer({ email = 'info@dc-epoxy.com', instagram = 'https://www.instagram.com/dc_epoxy_/' }) {
@@ -7,7 +8,7 @@ export default function Footer({ email = 'info@dc-epoxy.com', instagram = 'https
     <footer className="footer">
       <div className="container footer-top">
         <div className="footer-brand">
-          <Link to="/" className="brand-lockup brand-lockup--light" aria-label="DC-EPOXY home">
+          <Link href="/" className="brand-lockup brand-lockup--light" aria-label="DC-EPOXY home">
             <span className="brand-mark">DC</span>
             <span className="brand-name">DC<span>-</span>EPOXY</span>
           </Link>
@@ -24,10 +25,10 @@ export default function Footer({ email = 'info@dc-epoxy.com', instagram = 'https
 
         <div className="footer-col">
           <span className="eyebrow">Explore</span>
-          <Link to="/services">Services</Link>
-          <Link to="/projects">Projects</Link>
-          <Link to="/process">Our process</Link>
-          <Link to="/about">About us</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/process">Our process</Link>
+          <Link href="/about">About us</Link>
         </div>
 
         <div className="footer-col">
@@ -41,8 +42,8 @@ export default function Footer({ email = 'info@dc-epoxy.com', instagram = 'https
       <div className="container footer-bottom">
         <span>© 2026 DC-EPOXY. All rights reserved.</span>
         <span className="footer-legal">
-          <Link to="/privacy">Privacy</Link>
-          <Link to="/terms">Terms / Disclaimer</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms / Disclaimer</Link>
         </span>
       </div>
     </footer>

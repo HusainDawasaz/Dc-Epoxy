@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 export default function Button({ href, children, variant = 'copper', onClick, external }) {
@@ -30,7 +31,7 @@ export default function Button({ href, children, variant = 'copper', onClick, ex
       );
     }
     return (
-      <Link to={href} className={className} onClick={onClick}>
+      <Link href={href} className={className} onClick={onClick}>
         {content}
       </Link>
     );

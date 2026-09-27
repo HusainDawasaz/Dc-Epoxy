@@ -90,12 +90,11 @@ export default function Header() {
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              style={({ isActive }) => ({
+              style={{
                 color: 'inherit',
-                textDecoration: 'none',
-                opacity: isActive ? 1 : 0.8,
+                textDecoration: 'none', opacity: pathname === to ? 1 : 0.8,
                 transition: 'opacity 0.2s',
-              })}
+              }}
             >
               {label}
             </Link>

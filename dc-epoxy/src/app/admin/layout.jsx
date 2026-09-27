@@ -17,13 +17,13 @@ const navItems = [
 
 export default function AdminLayout({ children }) {
   const navigate = useRouter();
-  const location = usePathname();
+  const pathname = usePathname();
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     setSidebarOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     const checkSession = async () => {
@@ -87,19 +87,19 @@ export default function AdminLayout({ children }) {
             <Link
               key={to}
               href={to}
-              style={({ isActive }) => ({
+              style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '0.75rem 1rem',
                 borderRadius: '6px',
-                color: isActive ? 'white' : '#bbb',
-                backgroundColor: isActive ? '#f97316' : 'transparent',
+                color: pathname === to ? 'white' : '#bbb',
+                backgroundColor: pathname === to ? '#f97316' : 'transparent',
                 textDecoration: 'none',
                 fontSize: '0.9rem',
-                fontWeight: isActive ? 700 : 400,
+                fontWeight: pathname === to ? 700 : 400,
                 transition: 'background-color 0.2s, color 0.2s',
-              })}
+              }}
             >
               <Icon size={18} />
               {label}

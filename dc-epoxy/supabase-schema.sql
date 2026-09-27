@@ -118,3 +118,6 @@ INSERT INTO process_steps (step_number, title, description, sort_order) VALUES
 (2, 'Surface Preparation', 'Diamond grinding, crack repair and moisture testing ensure the substrate is perfect before any product is applied.', 2),
 (3, 'Epoxy Application', 'Our certified applicators apply each coat with precision, following manufacturer specifications for mix ratios and cure times.', 3),
 (4, 'Curing & Quality Check', 'We allow full cure time then conduct a detailed quality inspection before handover. Your floor is ready to perform.', 4);
+
+-- Add hero video URL to settings (run this if your settings table already exists)
+ALTER TABLE settings ADD COLUMN IF NOT EXISTS hero_video_url text DEFAULT '';

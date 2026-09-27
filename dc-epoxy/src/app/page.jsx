@@ -8,6 +8,18 @@ import Layout from '../components/Layout';
 export default function Home() {
   const { settings, services, projects, testimonials, processSteps } = useContent();
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   const displayServices = services && services.length > 0 ? services : [
     { id: 1, title: 'Garage Epoxy', description: 'Durable, stain-resistant coatings for residential garages.', tag: 'Residential' },
     { id: 2, title: 'Metallic Epoxy', description: 'High-end reflective metallic finish for showrooms.', tag: 'Luxury' },
@@ -185,6 +197,19 @@ export default function Home() {
           <Link href="/projects" className="cin-btn cin-btn--outline-dark">
             View All Projects <ArrowRight size={15} />
           </Link>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════
+          BEFORE & AFTER
+      ══════════════════════════════════ */}
+      <section style={{ background: '#111', color: 'white', padding: '100px 0' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+          <div style={{ marginBottom: '60px' }}>
+            <span className="eyebrow eyebrow--copper" style={{ color: '#c58361', display: 'block', marginBottom: '10px', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Results</span>
+            <h2 style={{ fontSize: 'clamp(38px,5.2vw,72px)', letterSpacing: '-0.07em', textTransform: 'uppercase', margin: '16px 0 0', lineHeight: 0.97 }}>See the <em style={{color:'#c58361',fontStyle:'normal'}}>transformation</em></h2>
+          </div>
+          <div className="commonninja_component" pid="pid-101850d9-1bce-4025-9860-de67f43456b1"></div>
         </div>
       </section>
 

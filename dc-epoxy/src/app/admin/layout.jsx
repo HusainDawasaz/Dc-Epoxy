@@ -8,12 +8,12 @@ import { LayoutDashboard, Settings, Image, Star, List, Mail, LogOut, Paintbrush,
 const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/admin/settings', icon: Settings, label: 'Settings' },
-  { to: '/admin/appearance', icon: Paintbrush, label: 'Appearance' },
   { to: '/admin/services', icon: Database, label: 'Services' },
   { to: '/admin/projects', icon: Image, label: 'Projects' },
   { to: '/admin/testimonials', icon: Star, label: 'Testimonials' },
   { to: '/admin/process-steps', icon: List, label: 'Process Steps' },
   { to: '/admin/enquiries', icon: Mail, label: 'Enquiries' },
+  { to: '/admin/appearance', icon: Paintbrush, label: 'Appearance' },
 ];
 
 export default function AdminLayout({ children }) {

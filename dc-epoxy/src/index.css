@@ -1542,3 +1542,386 @@ input:focus, textarea:focus, select:focus {
 .desktop-nav a:not(.button):hover::after {
   width: 100%;
 }
+
+/* ══════════════════════════════════════════════
+   CINEMATIC REDESIGN STYLES
+   ══════════════════════════════════════════════ */
+
+/* ── HERO ── */
+.cin-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background-color: #0d0d0d;
+}
+.cin-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(13,13,13,0.92) 0%,
+    rgba(13,13,13,0.65) 55%,
+    rgba(13,13,13,0.2) 100%
+  );
+}
+.cin-hero__overlay-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 280px;
+  background: linear-gradient(to top, #0d0d0d, transparent);
+}
+.cin-hero__badge {
+  position: absolute; top: 2rem; right: 2rem; z-index: 5;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 14px; backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.04);
+}
+.cin-hero__badge-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--rose);
+  animation: cin-pulse 1.5s ease infinite;
+}
+@keyframes cin-pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.cin-hero__content {
+  position: relative; z-index: 2;
+  padding: 3rem 2.5rem 5rem;
+}
+.cin-hero__eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--rose);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 14px;
+  animation: cin-fade-up 0.6s ease both 0.2s;
+}
+.cin-hero__eyebrow::before {
+  content: ''; width: 36px; height: 1px; background: var(--rose);
+}
+.cin-hero__title {
+  font-size: clamp(3.2rem, 9vw, 7.5rem);
+  font-weight: 900; line-height: 0.88; letter-spacing: -0.065em;
+  text-transform: uppercase; color: white; margin-bottom: 2rem;
+}
+.cin-hero__line {
+  display: block; overflow: hidden;
+}
+.cin-hero__line span {
+  display: block;
+  animation: cin-line-reveal 0.9s cubic-bezier(0.16,1,0.3,1) both;
+}
+.cin-hero__line:nth-child(1) span { animation-delay: 0.3s; }
+.cin-hero__line:nth-child(2) span { animation-delay: 0.45s; }
+.cin-hero__line:nth-child(3) span { animation-delay: 0.6s; }
+.cin-hero__title em { color: var(--rose); font-style: normal; }
+
+@keyframes cin-line-reveal {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+@keyframes cin-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cin-hero__desc {
+  font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.58);
+  max-width: 400px; margin-bottom: 2rem;
+  animation: cin-fade-up 0.7s ease both 0.75s;
+}
+.cin-hero__ctas {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: cin-fade-up 0.7s ease both 0.95s;
+}
+
+/* Floating stats */
+.cin-hero__stats {
+  position: absolute; bottom: 4rem; right: 2.5rem; z-index: 2;
+  display: flex; flex-direction: column; gap: 1.5rem; text-align: right;
+  animation: cin-fade-up 0.7s ease both 1.1s;
+}
+.cin-stat__num {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+  line-height: 1; letter-spacing: -0.05em; color: white;
+}
+.cin-stat__label {
+  font-family: var(--mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+  margin-top: 2px;
+}
+
+/* Scroll indicator */
+.cin-hero__scroll {
+  position: absolute; bottom: 2.5rem; left: 2.5rem; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  animation: cin-fade-up 0.7s ease both 1.3s;
+}
+.cin-scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--rose), transparent);
+  animation: cin-line-grow 2s ease infinite;
+}
+@keyframes cin-line-grow {
+  0%   { transform: scaleY(0); transform-origin: top; opacity:1; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity:1; }
+  100% { transform: scaleY(1); transform-origin: bottom; opacity:0; }
+}
+
+/* ── BUTTONS ── */
+.cin-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+.cin-btn--copper {
+  background: var(--copper); color: white;
+  padding: 0 26px; height: 52px;
+}
+.cin-btn--copper:hover {
+  background: var(--rose);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(184,115,51,0.45);
+  color: white;
+}
+.cin-btn--video {
+  background: transparent; color: white;
+  padding: 0 18px; height: 52px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.cin-btn--video:hover { border-color: var(--rose); color: var(--rose); }
+.cin-btn--sm { height: 42px; padding: 0 18px; font-size: 10px; }
+.cin-btn--lg { height: 60px; padding: 0 36px; font-size: 11px; }
+.cin-btn--outline-dark {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--ink); padding: 0 26px; height: 50px;
+}
+.cin-btn--outline-dark:hover { background: var(--ink); color: white; }
+.cin-btn--ghost-white {
+  background: transparent; color: white;
+  border: 1px solid rgba(255,255,255,0.2); padding: 0 28px; height: 60px;
+}
+.cin-btn--ghost-white:hover { border-color: white; }
+
+.cin-play-circle {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid currentColor;
+  display: grid; place-items: center;
+}
+
+/* ── TICKER ── */
+.cin-ticker {
+  background: var(--copper); padding: 14px 0; overflow: hidden; white-space: nowrap;
+}
+.cin-ticker__inner {
+  display: inline-flex; gap: 2.5rem;
+  animation: cin-ticker 20s linear infinite;
+}
+@keyframes cin-ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.cin-ticker__item {
+  display: inline-flex; align-items: center; gap: 1rem;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: white;
+}
+.cin-ticker__dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.5); }
+
+/* ── SECTIONS ── */
+.cin-section { padding: 5rem 2.5rem; }
+.cin-section--dark { background: #0d0d0d; color: white; }
+.cin-section--paper { background: var(--paper); color: var(--ink); }
+
+.cin-section__header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap;
+}
+.cin-section-num {
+  display: block;
+  font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.22);
+  letter-spacing: 0.1em; margin-bottom: 0.75rem;
+}
+.cin-section-num--dark { color: rgba(0,0,0,0.3); }
+.cin-big-heading {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 900; line-height: 0.9; letter-spacing: -0.065em;
+  text-transform: uppercase; color: white; margin: 0;
+}
+.cin-big-heading--dark { color: var(--ink); }
+.cin-big-heading em { color: var(--rose); font-style: normal; }
+
+/* ── SERVICE ROWS ── */
+.cin-service-rows { border-top: 1px solid #1f1f1f; margin-top: 2rem; }
+.cin-service-row {
+  display: flex; align-items: center; gap: 2rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid #1f1f1f;
+  text-decoration: none; color: white;
+  transition: padding-left 0.35s ease, background 0.35s ease;
+  position: relative; overflow: hidden;
+}
+.cin-service-row::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+  background: linear-gradient(90deg, rgba(184,115,51,0.09), transparent);
+  transition: width 0.4s ease;
+}
+.cin-service-row:hover::before { width: 100%; }
+.cin-service-row:hover { padding-left: 1rem; }
+.cin-service-row:hover .cin-sr-num { color: var(--rose); }
+.cin-service-row:hover .cin-sr-arrow { transform: translateX(8px); color: var(--rose); }
+
+.cin-sr-num {
+  font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.2);
+  min-width: 36px; transition: color 0.3s;
+}
+.cin-sr-title {
+  flex: 1; font-size: clamp(1rem, 2.5vw, 1.7rem); font-weight: 800;
+  letter-spacing: -0.04em; text-transform: uppercase;
+}
+.cin-sr-tag {
+  font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 4px 10px; border: 1px solid #2a2a2a; white-space: nowrap;
+}
+.cin-sr-arrow { font-size: 1.2rem; transition: transform 0.3s, color 0.3s; color: rgba(255,255,255,0.2); }
+
+/* ── PROJECTS GRID ── */
+.cin-projects-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: 280px 280px;
+  gap: 12px; margin-top: 2.5rem;
+}
+.cin-project-tile {
+  background: #d8d0c7; position: relative; overflow: hidden;
+  transition: transform 0.5s ease;
+}
+.cin-project-tile--tall { grid-row: span 2; }
+.cin-project-tile:hover { transform: scale(0.985); }
+.cin-project-overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 1.5rem;
+  background: linear-gradient(rgba(0,0,0,0) 30%, rgba(17,17,17,0.82));
+  color: white;
+}
+.cin-project-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--rose);
+}
+.cin-project-overlay h3 { font-size: 1.3rem; letter-spacing: -0.04em; margin: 6px 0 4px; }
+.cin-project-overlay span { font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── QUOTE ── */
+.cin-quote-section {
+  background: var(--cream, #eeebe4); color: var(--ink);
+  padding: 5rem 2.5rem; position: relative; overflow: hidden;
+}
+.cin-quote-mark {
+  position: absolute; top: -3rem; left: 0.5rem;
+  font-size: 22rem; font-weight: 900; line-height: 1;
+  color: rgba(184,115,51,0.07); pointer-events: none; user-select: none;
+}
+.cin-big-quote {
+  font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 800; line-height: 1.05;
+  letter-spacing: -0.04em; max-width: 760px; position: relative; z-index: 1;
+}
+.cin-quote-meta {
+  display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; position: relative; z-index: 1;
+}
+.cin-quote-line { width: 40px; height: 1px; background: var(--copper); flex-shrink: 0; }
+.cin-quote-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+.cin-quote-loc { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* ── PROCESS GRID ── */
+.cin-process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px; margin-top: 3rem;
+}
+.cin-process-cell {
+  padding: 2.5rem; background: #161616;
+  border: 1px solid #1c1c1c;
+  transition: background 0.35s, border-color 0.35s;
+}
+.cin-process-cell:hover { background: #1d1510; border-color: rgba(184,115,51,0.25); }
+.cin-process-cell:hover .cin-pc-num { color: var(--rose); }
+.cin-pc-num {
+  font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em; margin-bottom: 1.2rem; transition: color 0.3s;
+}
+.cin-pc-title { font-size: 1rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+.cin-pc-desc { font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.4); }
+
+/* ── AREAS ── */
+.cin-areas {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line); margin-top: 2.5rem;
+}
+.cin-area-item {
+  display: flex; align-items: center; gap: 14px;
+  min-height: 72px; border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line); padding: 0 1rem;
+  font-size: 13px; font-weight: 700; color: var(--ink);
+}
+.cin-area-item:nth-child(4n) { border-right: none; }
+.cin-area-num { font-family: var(--mono); font-size: 10px; color: var(--rose); }
+
+/* ── CTA ── */
+.cin-cta {
+  background: #0d0d0d; color: white;
+  padding: 6rem 2.5rem; text-align: center; position: relative; overflow: hidden;
+}
+.cin-cta__glow {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(184,115,51,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cin-cta__label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--rose); margin-bottom: 1.5rem; position: relative; z-index: 1;
+}
+.cin-cta__title {
+  font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 900;
+  line-height: 0.88; letter-spacing: -0.07em; text-transform: uppercase;
+  margin-bottom: 1.5rem; position: relative; z-index: 1;
+}
+.cin-cta__underline {
+  position: relative; display: inline-block;
+}
+.cin-cta__underline::after {
+  content: ''; position: absolute; bottom: 4px; left: 0; right: 0;
+  height: 6px; background: var(--copper);
+}
+.cin-cta__sub {
+  font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem;
+  position: relative; z-index: 1;
+}
+.cin-cta__buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .cin-hero__stats { display: none; }
+  .cin-hero__scroll { display: none; }
+  .cin-hero__content { padding: 2rem 1.5rem 4rem; }
+  .cin-section { padding: 3.5rem 1.5rem; }
+  .cin-process-grid { grid-template-columns: 1fr; }
+  .cin-areas { grid-template-columns: repeat(2, 1fr); }
+  .cin-area-item:nth-child(4n) { border-right: 1px solid var(--line); }
+  .cin-area-item:nth-child(2n) { border-right: none; }
+  .cin-projects-grid { grid-template-rows: 240px 200px; }
+}
+@media (max-width: 600px) {
+  .cin-projects-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .cin-project-tile { height: 280px; }
+  .cin-project-tile--tall { height: 380px; }
+  .cin-section__header { flex-direction: column; align-items: flex-start; }
+  .cin-areas { grid-template-columns: 1fr 1fr; }
+  .cin-area-item:nth-child(4n) { border-right: 1px solid var(--line); }
+  .cin-area-item:nth-child(2n) { border-right: none; }
+  .cin-cta { padding: 4rem 1.5rem; }
+  .cin-big-quote { font-size: clamp(1.3rem, 5vw, 2rem); }
+}

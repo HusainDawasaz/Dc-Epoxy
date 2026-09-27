@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../../lib/supabase';
 import { Upload, Loader2, Image as ImageIcon } from 'lucide-react';
 
 export default function ImageUpload({ url, onUpload, bucket = 'images' }) {

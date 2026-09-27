@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from 'react';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../../lib/supabase';
 import { Upload, X, Video, Loader } from 'lucide-react';
 
 export default function VideoUpload({ currentUrl, onUpload, label = 'Upload Video' }) {

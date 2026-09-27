@@ -19,7 +19,7 @@ export default function AdminLogin() {
       setError(signInError.message);
       setLoading(false);
     } else {
-      navigate('/admin/dashboard');
+      navigate.push('/admin/dashboard');
     }
   };
 

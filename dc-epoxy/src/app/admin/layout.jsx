@@ -29,13 +29,13 @@ export default function AdminLayout({ children }) {
   useEffect(() => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) navigate('/admin');
+      if (!session) navigate.push('/admin');
       setLoading(false);
     };
     checkSession();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) navigate('/admin');
+      if (!session) navigate.push('/admin');
     });
 
     return () => subscription.unsubscribe();
@@ -43,7 +43,7 @@ export default function AdminLayout({ children }) {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate('/');
+    navigate.push('/');
   };
 
   if (loading) return (
@@ -51,6 +51,10 @@ export default function AdminLayout({ children }) {
       Loading...
     </div>
   );
+
+  if (pathname === '/admin') {
+    return <>{children}</>;
+  }
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>

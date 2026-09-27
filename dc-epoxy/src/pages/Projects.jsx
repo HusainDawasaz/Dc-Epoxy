@@ -17,9 +17,11 @@ export default function Projects() {
   return (
     <Layout darkHeader={true}>
       <div className="inner-page">
-        <section className="inner-hero" style={{ backgroundColor: '#171716', color: 'white', padding: '10rem 2rem 4rem 2rem' }}>
-          <h1 style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>Our Projects</h1>
-          <p style={{ fontSize: '1.2rem', maxWidth: '800px', color: '#ccc' }}>Explore our portfolio of recent epoxy and resin flooring installations across the UAE.</p>
+        <section className="inner-hero">
+          <div className="container">
+            <h1>Our Projects</h1>
+            <p>Explore our portfolio of recent epoxy and resin flooring installations across the UAE.</p>
+          </div>
         </section>
 
         <section className="projects-gallery section" style={{ padding: '6rem 2rem' }}>
@@ -28,10 +30,12 @@ export default function Projects() {
               <div key={project.id || index} className="gallery-card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <img src={project.image_url} alt={project.title} loading="lazy" style={{ width: '100%', aspectRatio: '1.2', objectFit: 'cover', marginBottom: '1rem' }} />
                 <div className="gallery-meta">
-                  <span className="project-label" style={{ color: '#b87333', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>{project.service_type}</span>
-                  <h2 style={{ fontSize: '1.5rem', margin: '0.5rem 0' }}>{project.title}</h2>
-                  <p style={{ margin: '0 0 0.5rem 0', color: '#666' }}>{project.location}</p>
-                  {project.description && <small style={{ color: '#888', fontSize: '0.9rem' }}>{project.description}</small>}
+                  <div style={{ fontSize: '0.8rem', color: '#c58361', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem', fontFamily: 'var(--mono)' }}>{project.service_type || 'Epoxy Flooring'}</div>
+                  <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{project.title}</h2>
+                  <div style={{ fontSize: '0.9rem', color: '#746f68', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{ color: '#b87333' }}>📍</span> {project.location}
+                  </div>
+                  <p style={{ fontSize: '1rem', color: '#555', lineHeight: 1.6 }}>{project.description}</p>
                 </div>
               </div>
             ))}

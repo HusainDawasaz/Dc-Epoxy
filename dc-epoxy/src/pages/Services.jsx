@@ -18,10 +18,12 @@ export default function Services() {
   return (
     <Layout darkHeader={true}>
       <div className="inner-page">
-        <section className="inner-hero" style={{ backgroundColor: '#171716', color: 'white', padding: '10rem 2rem 4rem 2rem' }}>
-          <h1 style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>Epoxy Flooring Systems</h1>
-          <p style={{ fontSize: '1.2rem', maxWidth: '800px', color: '#ccc' }}>We offer a range of premium resin and epoxy systems tailored for different environments, from residential garages to heavy-duty industrial warehouses.</p>
-        </section>
+        <section className="inner-hero">
+          <div className="container">
+            <h1>Epoxy Flooring Systems</h1>
+            <p>We offer a range of premium resin and epoxy systems tailored for different environments, from residential garages to heavy-duty industrial warehouses.</p>
+          </div>
+
 
         <section className="service-directory" style={{ padding: '6rem 2rem', backgroundColor: '#f7f5f1' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '4rem' }}>

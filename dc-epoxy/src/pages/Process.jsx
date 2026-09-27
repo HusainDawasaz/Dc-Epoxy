@@ -15,20 +15,20 @@ export default function Process() {
   return (
     <Layout darkHeader={true}>
       <div className="process-page">
-        <section className="inner-hero" style={{ backgroundColor: '#171716', color: 'white', padding: '10rem 2rem 4rem 2rem' }}>
-          <h1 style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>Our Process</h1>
-          <p style={{ fontSize: '1.2rem', maxWidth: '800px', color: '#ccc' }}>Every DC-EPOXY installation follows a disciplined process...</p>
+        <section className="inner-hero">
+          <div className="container">
+            <h1>Our Process</h1>
+            <p>Every DC-EPOXY installation follows a disciplined process...</p>
+          </div>
         </section>
 
         <section className="process-timeline section" style={{ padding: '6rem 2rem' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             {displayProcess.map((step, index) => (
-              <div key={step.id || index} className="timeline-step" style={{ display: 'flex', gap: '2rem' }}>
-                <div style={{ fontSize: '3rem', color: '#b87333', fontWeight: 'bold', lineHeight: 1 }}>
-                  {String(index + 1).padStart(2, '0')}
-                </div>
+              <div key={step.id || index} className="timeline-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+                <div style={{ fontSize: '3rem', color: '#eeebe4', fontWeight: 'bold', lineHeight: 1 }}>{String(index + 1).padStart(2, '0')}</div>
                 <div>
-                  <h2 style={{ fontSize: '1.8rem', margin: '0 0 1rem 0' }}>{step.title}</h2>
+                  <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{step.title}</h2>
                   <p style={{ fontSize: '1.1rem', color: '#555', lineHeight: 1.6 }}>{step.description}</p>
                 </div>
               </div>

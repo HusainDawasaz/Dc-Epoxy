@@ -765,12 +765,15 @@ h1 em, h2 em {
   display: none;
 }
 
+
 .inner-page {
-  padding-top: 92px;
+  padding-top: 0;
 }
 
 .inner-hero {
-  padding: 110px 0;
+  padding: 140px 0 80px;
+  background: var(--charcoal);
+  color: white;
 }
 
 .local-seo-section {
@@ -1061,8 +1064,8 @@ h1 em, h2 em {
 }
 
 /* ── Inner pages ────────────────────────────────────────────────── */
-.inner-page { padding-top: 92px; }
-.inner-hero { background: var(--charcoal); color: white; padding: 110px 0 80px; }
+.inner-page { padding-top: 0; }
+.inner-hero { background: var(--charcoal); color: white; padding: 140px 0 80px; }
 .inner-hero h1 { font-size: clamp(42px, 6vw, 88px); line-height: 0.94; letter-spacing: -0.07em; text-transform: uppercase; margin: 14px 0 22px; max-width: 760px; }
 .inner-hero p { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.65); max-width: 520px; }
 .inner-hero--rose { background: var(--rose); }

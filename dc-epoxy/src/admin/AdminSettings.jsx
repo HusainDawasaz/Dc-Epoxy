@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Save } from 'lucide-react';
+import ImageUpload from './components/ImageUpload';
 
 export default function AdminSettings() {
   const [settings, setSettings] = useState({
     hero_heading: '',
     hero_description: '',
     hero_image_url: '',
+    hero_video_url: '',
     contact_email: '',
     instagram_url: '',
     seo_title: '',
@@ -97,8 +99,21 @@ export default function AdminSettings() {
         </div>
 
         <div className="form-group" style={formGroupStyle}>
-          <label style={labelStyle}>Hero Image URL</label>
-          <input type="text" name="hero_image_url" value={settings.hero_image_url || ''} onChange={handleChange} style={inputStyle} />
+          <label style={labelStyle}>Hero Background Image</label>
+          <ImageUpload
+            currentUrl={settings.hero_image_url}
+            onUpload={(url) => setSettings(s => ({ ...s, hero_image_url: url }))}
+            label="Upload Hero Image"
+          />
+          <input type="text" name="hero_image_url" placeholder="Or paste URL..." value={settings.hero_image_url || ''} onChange={handleChange} style={{ ...inputStyle, marginTop: '8px' }} />
+        </div>
+
+        <div className="form-group" style={formGroupStyle}>
+          <label style={labelStyle}>🎬 Hero Background Video URL</label>
+          <p style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>
+            Paste a direct .mp4 video URL for an immersive cinematic video background on your hero. Leave blank to use the image instead.
+          </p>
+          <input type="url" name="hero_video_url" placeholder="https://example.com/your-video.mp4" value={settings.hero_video_url || ''} onChange={handleChange} style={inputStyle} />
         </div>
 
         <div className="form-group" style={formGroupStyle}>

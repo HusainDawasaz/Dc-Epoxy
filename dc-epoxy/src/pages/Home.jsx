@@ -34,7 +34,8 @@ export default function Home() {
     { id: 4, step_number: '04', title: 'Quality Check & Handover', description: 'Full cure, detailed inspection, then handover. Your floor is ready to perform for decades.' },
   ];
 
-  const heroStyle = {
+  const heroVideoUrl = settings?.hero_video_url || null;
+  const heroStyle = heroVideoUrl ? { background: '#0d0d0d' } : {
     backgroundImage: settings?.hero_image_url
       ? `url(${settings.hero_image_url})`
       : 'url(/images/dc-epoxy-hero.jpg)',
@@ -55,8 +56,17 @@ export default function Home() {
           HERO — Cinematic Video-Style
       ══════════════════════════════════ */}
       <section className="cin-hero" style={heroStyle}>
+        {/* Video background (if set in Admin Settings) */}
+        {heroVideoUrl && (
+          <video
+            autoPlay muted loop playsInline
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+            src={heroVideoUrl}
+          />
+        )}
         <div className="cin-hero__overlay" />
         <div className="cin-hero__overlay-bottom" />
+
 
         {/* Live Badge */}
         <div className="cin-hero__badge">

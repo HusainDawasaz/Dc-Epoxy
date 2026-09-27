@@ -15,7 +15,7 @@ export default function Process() {
   return (
     <Layout darkHeader={true}>
       <div className="process-page">
-        <section className="inner-hero" style={{ backgroundColor: '#171716', color: 'white', padding: '8rem 2rem 4rem 2rem' }}>
+        <section className="inner-hero" style={{ backgroundColor: '#171716', color: 'white', padding: '10rem 2rem 4rem 2rem' }}>
           <h1 style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>Our Process</h1>
           <p style={{ fontSize: '1.2rem', maxWidth: '800px', color: '#ccc' }}>Every DC-EPOXY installation follows a disciplined process...</p>
         </section>

@@ -56,7 +56,7 @@ export default function Contact() {
 
   return (
     <Layout darkHeader={false}>
-      <div className="contact-page" style={{ backgroundColor: '#171716', color: 'white', minHeight: '100vh', paddingTop: '8rem', paddingBottom: '6rem' }}>
+      <div className="contact-page" style={{ backgroundColor: '#171716', color: 'white', minHeight: '100vh', paddingTop: '10rem', paddingBottom: '6rem' }}>
         <div className="contact-layout" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '4rem', padding: '0 2rem' }}>
           
           <div style={{ flex: 1 }}>

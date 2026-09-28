@@ -8,6 +8,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     location: '',
     area: '',
     service_type: 'Garage Epoxy',
@@ -96,9 +97,15 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 'bold' }}>Location</label>
-                  <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="e.g. Dubai Marina, Abu Dhabi" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ccc', borderRadius: '4px' }} />
+                <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 'bold' }}>Phone</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+971..." style={{ width: '100%', padding: '0.8rem', border: '1px solid #ccc', borderRadius: '4px' }} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 'bold' }}>Location</label>
+                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="e.g. Dubai Marina, Abu Dhabi" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ccc', borderRadius: '4px' }} />
+                  </div>
                 </div>
 
                 <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>

@@ -62,11 +62,11 @@ export default function Contact() {
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <Mail color="#b87333" />
-                <a href="mailto:info@dcepoxy.ae" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem' }}>info@dcepoxy.ae</a>
+                <a href="mailto:info@dc-epoxy.com" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem' }}>info@dc-epoxy.com</a>
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <Instagram color="#b87333" />
-                <a href="https://instagram.com/dcepoxy" target="_blank" rel="noreferrer" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem' }}>@dcepoxy</a>
+                <a href="https://www.instagram.com/dc_epoxy_/" target="_blank" rel="noreferrer" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem' }}>@dc_epoxy_</a>
               </div>
             </div>
           </div>

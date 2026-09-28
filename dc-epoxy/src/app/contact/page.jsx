@@ -27,21 +27,21 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
-
     setStatus('loading');
-    
-        try {
+    try {
       const res = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      if (!res.ok) throw new Error('API Error');
-      
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || 'API Error');
+      }
       setStatus('success');
-      setFormData({ name: '', email: '', location: '', area: '', service_type: 'Garage Epoxy', message: '', consent: false });
+      setFormData({ name: '', email: '', phone: '', location: '', area: '', service_type: 'Garage Epoxy', message: '', consent: false });
     } catch (err) {
-      console.error(err);
+      console.error('Enquiry error:', err);
       setStatus('error');
     }
   };

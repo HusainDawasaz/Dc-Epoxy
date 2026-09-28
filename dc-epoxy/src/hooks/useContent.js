@@ -9,12 +9,13 @@ export function useContent() {
   useEffect(() => {
     async function fetchContent() {
       try {
-        const [settings, services, projects, testimonials, processSteps] = await Promise.all([
+        const [settings, services, projects, testimonials, processSteps, beforeAfter] = await Promise.all([
           supabase.from('settings').select('*').single(),
           supabase.from('services').select('*').order('sort_order'),
           supabase.from('projects').select('*').order('sort_order'),
           supabase.from('testimonials').select('*').order('sort_order'),
           supabase.from('process_steps').select('*').order('sort_order'),
+          supabase.from('before_after').select('*').order('sort_order'),
         ])
         setContent({
           settings: settings.data,
@@ -22,6 +23,7 @@ export function useContent() {
           projects: projects.data || [],
           testimonials: testimonials.data || [],
           processSteps: processSteps.data || [],
+          beforeAfter: beforeAfter.data || [],
         })
       } catch (err) {
         setError(err)
@@ -42,5 +44,6 @@ export function useContent() {
     projects: content?.projects || [],
     testimonials: content?.testimonials || [],
     processSteps: content?.processSteps || [],
+    beforeAfter: content?.beforeAfter || [],
   }
 }

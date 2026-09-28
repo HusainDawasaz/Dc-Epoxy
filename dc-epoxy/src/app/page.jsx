@@ -1,24 +1,34 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, CheckCircle, Play } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import Layout from '../components/Layout';
 
 export default function Home() {
-  const { settings, services, projects, testimonials, processSteps } = useContent();
+  const { settings, services, projects, testimonials, processSteps, beforeAfter } = useContent();
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
+  const BeforeAfterSlider = ({ item }) => {
+    const [sliderPos, setSliderPos] = useState(50);
+    return (
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', borderRadius: '8px', marginBottom: '2rem' }}>
+        {/* After Image (Base) */}
+        <img src={item.after_image_url} alt="After" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute' }} />
+        {/* Before Image (Clipped) */}
+        <img src={item.before_image_url} alt="Before" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }} />
+        {/* Slider */}
+        <input type="range" min="0" max="100" value={sliderPos} onChange={(e)=>setSliderPos(e.target.value)} style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, cursor: 'ew-resize', zIndex: 10 }} />
+        {/* Visual Handle */}
+        <div style={{ position: 'absolute', left: `${sliderPos}%`, top: 0, bottom: 0, width: '4px', backgroundColor: 'white', transform: 'translateX(-50%)', pointerEvents: 'none' }}>
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '32px', height: '32px', backgroundColor: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)' }}>
+             <span style={{color: '#333', fontSize: '12px', fontWeight: 'bold'}}>↔</span>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', top: '16px', left: '16px', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '4px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold' }}>BEFORE</div>
+        <div style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '4px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold' }}>AFTER</div>
+      </div>
+    );
+  };
 
   const displayServices = services && services.length > 0 ? services : [
     { id: 1, title: 'Garage Epoxy', description: 'Durable, stain-resistant coatings for residential garages.', tag: 'Residential' },
@@ -209,7 +219,18 @@ export default function Home() {
             <span className="eyebrow eyebrow--copper" style={{ color: '#c58361', display: 'block', marginBottom: '10px', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Results</span>
             <h2 style={{ fontSize: 'clamp(38px,5.2vw,72px)', letterSpacing: '-0.07em', textTransform: 'uppercase', margin: '16px 0 0', lineHeight: 0.97 }}>See the <em style={{color:'#c58361',fontStyle:'normal'}}>transformation</em></h2>
           </div>
-          <div className="commonninja_component" pid="pid-101850d9-1bce-4025-9860-de67f43456b1"></div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            {beforeAfter && beforeAfter.length > 0 ? (
+              beforeAfter.map((item, i) => (
+                <div key={item.id || i}>
+                  <BeforeAfterSlider item={item} />
+                  {item.title && <h3 style={{ marginTop: '-1rem', fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center' }}>{item.title}</h3>}
+                </div>
+              ))
+            ) : (
+              <p style={{ textAlign: 'center', color: '#888' }}>Before & After transformations coming soon.</p>
+            )}
+          </div>
         </div>
       </section>
 

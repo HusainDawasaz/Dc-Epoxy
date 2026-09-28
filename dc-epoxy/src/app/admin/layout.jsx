@@ -3,17 +3,18 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { supabase } from '../../lib/supabase';
-import { LayoutDashboard, Settings, Image, Star, List, Mail, LogOut, Paintbrush, Database, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Settings, Image as ImageIcon, Star, List, Mail, LogOut, Paintbrush, Database, Menu, X, SplitSquareHorizontal } from 'lucide-react';
 
 const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/admin/settings', icon: Settings, label: 'Settings' },
   { to: '/admin/services', icon: Database, label: 'Services' },
-  { to: '/admin/projects', icon: Image, label: 'Projects' },
+  { to: '/admin/projects', icon: ImageIcon, label: 'Projects' },
   { to: '/admin/testimonials', icon: Star, label: 'Testimonials' },
   { to: '/admin/process-steps', icon: List, label: 'Process Steps' },
   { to: '/admin/enquiries', icon: Mail, label: 'Enquiries' },
   { to: '/admin/appearance', icon: Paintbrush, label: 'Appearance' },
+  { to: '/admin/before-after', icon: SplitSquareHorizontal, label: 'Before / After' },
 ];
 
 export default function AdminLayout({ children }) {

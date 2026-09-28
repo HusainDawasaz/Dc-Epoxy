@@ -24,7 +24,7 @@ export async function POST(request) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
-          from: 'DC-EPOXY Leads <onboarding@resend.dev>', // Use default onboarding domain or custom verified domain
+          from: 'DC-EPOXY Leads <noreply@dc-epoxy.com>', // Use default onboarding domain or custom verified domain
           to: process.env.ADMIN_EMAIL || 'info@dc-epoxy.com',
           subject: `New Lead: ${data.service_type || 'Quote Request'} from ${data.name}`,
           html: `

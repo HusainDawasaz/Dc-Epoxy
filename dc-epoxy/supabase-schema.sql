@@ -121,3 +121,18 @@ INSERT INTO process_steps (step_number, title, description, sort_order) VALUES
 
 -- Add hero video URL to settings (run this if your settings table already exists)
 ALTER TABLE settings ADD COLUMN IF NOT EXISTS hero_video_url text DEFAULT '';
+
+-- Before After
+CREATE TABLE IF NOT EXISTS before_after (
+  id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title text,
+  before_image_url text NOT NULL,
+  after_image_url text NOT NULL,
+  sort_order integer DEFAULT 0,
+  created_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE before_after ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read before_after" ON before_after FOR SELECT USING (true);
+CREATE POLICY "Auth full access before_after" ON before_after FOR ALL USING (auth.role() = 'authenticated');
+

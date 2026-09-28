@@ -1,14 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Next.js uses process.env.NEXT_PUBLIC_ instead of import.meta.env.VITE_
-let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
+let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL || 'https://kzwkpecnyezhciumiylwf.supabase.co';
+let supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy';
 
-// Automatically fix if the user pasted the dashboard URL by mistake
 if (supabaseUrl.includes('supabase.com/dashboard')) {
   supabaseUrl = 'https://kzwkpecnyezhciumiylwf.supabase.co';
 } else if (!supabaseUrl) {
-  // Hardcode fallback just in case Vercel variables are missing
   supabaseUrl = 'https://kzwkpecnyezhciumiylwf.supabase.co';
 }
 
@@ -20,4 +17,4 @@ if (supabaseUrl.endsWith('/')) {
   supabaseUrl = supabaseUrl.slice(0, -1);
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);

@@ -8,6 +8,9 @@ export async function POST(request) {
   try {
     const data = await request.json();
     
+    // Remove consent from data so it doesn't cause a column-not-found error in DB
+    delete data.consent;
+
     // 1. Save to Supabase
     const { error: dbError } = await supabase
       .from('enquiries')

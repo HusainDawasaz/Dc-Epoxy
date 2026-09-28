@@ -172,10 +172,10 @@ export default function Home() {
 
         <div className="cin-service-rows">
           {displayServices.map((service, index) => (
-            <Link href="/services" key={service.id || index} className="cin-service-row">
+            <Link href="/services" key={service.id || index} className="cin-service-row" style={{ overflow: 'hidden', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
               <span className="cin-sr-num">0{index + 1}</span>
-              <span className="cin-sr-title">{service.title}</span>
-              <span className="cin-sr-tag">{service.tag || service.description?.split(',')[0]}</span>
+              <span className="cin-sr-title" style={{ overflow: 'hidden', wordBreak: 'break-word', overflowWrap: 'break-word' }}>{service.title}</span>
+              <span className="cin-sr-tag" style={{ overflow: 'hidden', wordBreak: 'break-word', overflowWrap: 'break-word' }}>{service.tag || service.description?.split(',')[0]}</span>
               <span className="cin-sr-arrow">→</span>
             </Link>
           ))}

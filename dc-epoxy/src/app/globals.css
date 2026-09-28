@@ -363,22 +363,26 @@ h1 em, h2 em {
 .service-copy {
   padding: 22px 4px 0;
   overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .service-copy h3 {
   font-size: 17px;
   letter-spacing: -0.04em;
   margin: 0 0 10px;
-  overflow-wrap: break-word;
+  overflow: hidden;
   word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .service-copy p {
   font-size: 13px;
   line-height: 1.65;
   color: var(--muted);
-  overflow-wrap: break-word;
+  overflow: hidden;
   word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .before-after-section {
@@ -1402,6 +1406,9 @@ h1 em, h2 em {
 .service-card {
   position: relative;
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .service-card::before {
   content: '';

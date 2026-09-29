@@ -26,11 +26,11 @@ export default function Process() {
         <section className="process-timeline section" style={{ padding: '6rem 2rem' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             {displayProcess.map((step, index) => (
-              <div key={step.id || index} className="timeline-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                <div style={{ fontSize: '3rem', color: '#eeebe4', fontWeight: 'bold', lineHeight: 1 }}>{String(index + 1).padStart(2, '0')}</div>
+              <div key={step.id || index} className="timeline-step">
+                <div className="process-index">{String(index + 1).padStart(2, '0')}</div>
                 <div>
-                  <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{step.title}</h2>
-                  <p style={{ fontSize: '1.1rem', color: '#555', lineHeight: 1.6 }}>{step.description}</p>
+                  <h2>{step.title}</h2>
+                  <p>{step.description}</p>
                 </div>
               </div>
             ))}

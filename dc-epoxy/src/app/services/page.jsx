@@ -29,16 +29,16 @@ export default function Services() {
         <section className="service-directory" style={{ padding: '6rem 2rem', backgroundColor: '#f7f5f1' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
             {displayServices.map((service, index) => (
-              <div key={service.id || index} className="directory-row" style={{ display: 'flex', gap: '3rem', alignItems: 'center', borderBottom: '1px solid #ddd', paddingBottom: '3rem' }}>
-                <div className="directory-number" style={{ fontSize: '2.5rem', color: '#b87333', fontWeight: 'bold' }}>
+              <div key={service.id || index} className="directory-row">
+                <div className="directory-number">
                   {String(index + 1).padStart(2, '0')}
                 </div>
-                <div style={{ width: '400px', height: '250px', flexShrink: 0 }}>
+                <div>
                   <img src={service.image_url} alt={service.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div style={{ flex: 1 }}>
-                  <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{service.title}</h2>
-                  <p style={{ fontSize: '1.1rem', color: '#555', lineHeight: 1.6 }}>{service.description}</p>
+                  <h2>{service.title}</h2>
+                  <p>{service.description}</p>
                 </div>
                 <ArrowRight size={32} color="#b87333" />
               </div>

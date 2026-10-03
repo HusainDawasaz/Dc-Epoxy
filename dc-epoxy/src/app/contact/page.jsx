@@ -40,6 +40,34 @@ export default function Contact() {
         throw new Error(errData.error || 'API Error');
       }
       setStatus('success');
+
+      // ── Meta Pixel Advanced Matching ──────────────────────────────
+      if (typeof window !== 'undefined' && window.fbq) {
+        try {
+          const { hashCustomerData } = await import('../../lib/hashData');
+          const nameParts = formData.name.trim().split(' ');
+          const firstName = nameParts[0] || '';
+          const lastName = nameParts.slice(1).join(' ') || '';
+          const hashedData = await hashCustomerData({
+            email: formData.email,
+            phone: formData.phone,
+            firstName,
+            lastName,
+          });
+          window.fbq('track', 'Lead', {
+            content_name: formData.service_type,
+            content_category: 'Epoxy Flooring',
+            currency: 'AED',
+          }, {
+            eventID: `lead_${Date.now()}`,
+            ...hashedData,
+          });
+        } catch (fbqErr) {
+          console.warn('Advanced Matching error (non-critical):', fbqErr);
+        }
+      }
+      // ─────────────────────────────────────────────────────────────
+
       setFormData({ name: '', email: '', phone: '', location: '', area: '', service_type: 'Garage Epoxy', message: '', consent: false });
     } catch (err) {
       console.error('Enquiry error:', err);
